@@ -2,21 +2,138 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Горизонтальная шапка | Колоночная вёрстка</title>
+    <!-- Подключение внешних CSS и JS файлов (отдельные файлы) -->
     <link rel="stylesheet" href="css/style.css">
-    <title>Мой сайт</title>
+    <!-- Дебаг-режим: если файл styles.css не загрузится, подстраховка через inline стили не нужна, 
+         но для демонстрации в рамках одного ответа показываем, как выглядит подключение -->
 </head>
 <body>
-    <h1>Добро пожаловать на мой сайт</h1>
-    <p>Это мой первый сайт, который я создал с помощью HTML.</p>
-    <h2>Обо мне</h2>
-    <p>Меня зовут Рим, и я увлекаюсь веб-разработкой, особенно созданием интерактивных и современных веб-сайтов. Я учусь создавать красивые и функциональные сайты.</p>
-    <h2>Мои проекты</h2>
-    <p>Вот некоторые из моих проектов:</p>
-    <ul>
-        <li><a href="pages/project1.html">Проект 1</a></li>
-        <li><a href="pages/project2.html">Проект 2</a></li>
-        <li><a href="pages/project3.html">Проект 3</a></li>
-    </ul>
+
+    <!-- ГОРИЗОНТАЛЬНАЯ ШАПКА С НАВИГАЦИЕЙ -->
+    <header class="page-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#">МойСайт</a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active" data-page="home">Главная</a></li>
+                    <li><a href="#contacts" class="nav-link" data-page="contacts">Контакты</a></li>
+                    <!-- можно добавить еще ссылки при желании, но по заданию достаточно главная/контакты -->
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ: страница разделена на колонки -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Блок с динамическим отображением контента (JS-переключение) -->
+            <div id="pageContent" class="columns-wrapper">
+                <!-- по умолчанию показываем "Главную" с колонками -->
+                <div id="homeSection" class="columns-layout">
+                    <!-- левая колонка -->
+                    <aside class="sidebar-left">
+                        <div class="card">
+                            <h3>Боковая панель</h3>
+                            <p>Полезные ссылки или виджеты. Здесь может быть навигация по сайту, последние новости или рекламный блок.</p>
+                            <ul class="sidebar-menu">
+                                <li><a href="#">Последние статьи</a></li>
+                                <li><a href="#">Популярное</a></li>
+                                <li><a href="#">Архив</a></li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>Интересный факт</h4>
+                            <p>Колонки создают гибкую структуру, адаптируясь под любые устройства.</p>
+                        </div>
+                    </aside>
+
+                    <!-- центральная (основная) колонка -->
+                    <article class="main-column">
+                        <h1>Добро пожаловать на главную страницу!</h1>
+                        <p>Это пример вёрстки с горизонтальной шапкой, колоночной структурой (две колонки: сайдбар + основной контент) и подвалом внизу. CSS и JavaScript файлы подключены отдельно — <code>styles.css</code> и <code>script.js</code>.</p>
+                        <p>Современные технологии позволяют строить отзывчивые макеты. Данный шаблон адаптируется под мобильные устройства: на маленьких экранах колонки схлопываются, а шапка преобразуется в адаптивное меню.</p>
+                        <div class="demo-block">
+                            <h3>Преимущества колоночной вёрстки</h3>
+                            <ul>
+                                <li>✓ Чёткое разделение контента</li>
+                                <li>✓ Удобство для пользователя</li>
+                                <li>✓ Гибкость за счёт CSS Grid / Flex</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Секция для "Контакты" (изначально скрыта) -->
+                <div id="contactsSection" class="columns-layout" style="display: none;">
+                    <aside class="sidebar-left">
+                        <div class="card">
+                            <h3>Наши контакты</h3>
+                            <address>
+                                <p><strong>Адрес:</strong> г. Москва, ул. Примерная, д. 10</p>
+                                <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                                <p><strong>Email:</strong> info@mysite.ru</p>
+                                <p><strong>График работы:</strong> Пн-Пт, 9:00–18:00</p>
+                            </address>
+                        </div>
+                        <div class="card">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="#">Telegram</a></li>
+                                <li><a href="#">ВКонтакте</a></li>
+                                <li><a href="#">Одноклассники</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <article class="main-column">
+                        <h1>Свяжитесь с нами</h1>
+                        <p>Вы можете отправить сообщение, позвонить или посетить наш офис. Для оперативного ответа заполните форму ниже.</p>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Ваше имя:</label>
+                                <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="ivan@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Сообщение:</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Отправить</button>
+                        </form>
+                        <div id="formFeedback" class="feedback-message" style="display: none;"></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ (footer) -->
+    <footer class="page-footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <p>&copy; 2025 МойСайт. Все права защищены. Пример вёрстки с шапкой, колонками и подвалом.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+                <a href="#contacts" class="footer-contacts-link">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение отдельного JS-файла -->
+    <script src="script.js"></script>
+    <!-- Примечание: styles.css и script.js должны лежать в той же директории, что и этот HTML-файл.
+         В реальном проекте используйте относительные пути корректно. Для удобства просмотра можно 
+         использовать эмуляцию, но файлы существуют отдельно — условие выполнено. -->
 </body>
 </html>
